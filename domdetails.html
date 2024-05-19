@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <details id="del">
+        <summary>
+
+        </summary>
+    </details> -->
+    <script>
+        function demo(){
+            return fetch('https://fakestoreapi.com/products')
+        }
+        demo().then((h)=>h.json()).then((h)=>{
+              let data=h
+              for(i of data){
+                let maindiv=document.createElement("div")
+                maindiv.style.height="cover"
+                // maindiv.style.width="cover"
+                // maindiv.style.backgroundColor='red'
+                maindiv.style.display="grid"
+                maindiv.style.gridTemplateColumns="repeat(auto,auto)"
+                
+                let container2=document.createElement("details")
+                
+                let container=document.createElement("summary")
+                container.innerHTML=i.id
+                
+                
+                container2.appendChild(container)
+
+                let div=document.createElement("div")
+                // div.style.height='100px'
+                // div.style.width='cover'
+                div.style.backgroundColor='yellow'
+                div.style.textAlign="center"
+                div.style.padding="20px"
+              
+                div.innerHTML=`<h2>${i.title}</h2>
+                                <h4>Price ${i.price}</h4>
+                                <p>${i.description}</p> 
+                                <h4>${i.category}</h4>
+                                <h5>Count ${i.rating.count}</h5>`
+
+                let image=document.createElement("img")
+                image.src=i.image
+               
+                
+                image.setAttribute("style","height:150px;width:150px;align-items:center")
+                div.appendChild(image)
+
+                container2.appendChild(div)
+                maindiv.appendChild(container2)
+                document.body.appendChild(maindiv)
+
+                
+              }
+        })
+    </script>
+</body>
+</html>
